@@ -9,7 +9,7 @@
     "scripts": {
         "setup:db:prod": "NODE_ENV=production node -r dotenv/config ./node_modules/.bin/sequelize db:migrate",
         "prepare": "husky install",
-        "prebuild": "rimraf .next && npm run setup:db:prod",
+        "prebuild": "rimraf .next",
         "dev": "next dev",
         "build": "next build",
         "start": "REACT_APP_VERSION=$npm_package_version next start",
