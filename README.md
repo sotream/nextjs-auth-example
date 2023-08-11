@@ -33,6 +33,7 @@
 
 1. [Next.js](https://nextjs.org/)
 2. [React query](https://tanstack.com/query)
+3. [Vercel PostgreSQL](https://vercel.com/docs/storage/vercel-postgres)
 
 ## Installation
 

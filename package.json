@@ -28,6 +28,7 @@
     "dependencies": {
         "@hookform/resolvers": "^3.1.1",
         "@reduxjs/toolkit": "^1.9.5",
+        "@vercel/postgres": "^0.4.1",
         "axios": "^1.4.0",
         "bcrypt": "^5.1.0",
         "classnames": "2.3.2",
@@ -44,6 +45,7 @@
         "next-redux-cookie-wrapper": "^2.2.1",
         "next-redux-wrapper": "^8.1.0",
         "nprogress": "^0.2.0",
+        "pg": "^8.11.2",
         "ramda": "0.29.0",
         "rc-picker": "3.11.0",
         "react": "18.2.0",
@@ -82,7 +84,6 @@
         "prettier": "3.0.0",
         "prettier-eslint-cli": "7.1.0",
         "sequelize-cli": "^6.6.1",
-        "sqlite3": "^5.1.6",
         "typescript": "5.1.6"
     }
 }
