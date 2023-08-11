@@ -1,0 +1,25 @@
+& {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  min-height: 100vh;
+
+  .footer {
+    padding: 1.5rem 2.5rem;
+  }
+
+  .main {
+    display: flex;
+    flex-grow: 1;
+    padding: 2.5rem;
+
+    h1 {
+      color: var(--brand-shade-10);
+    }
+  }
+
+  .footer {
+    background-color: var(--brand);
+    box-shadow: 0 0 .2rem var(--brand-shade-30);
+  }
+}

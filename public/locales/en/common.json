@@ -1,0 +1,6 @@
+{
+  "greeting": "Hello",
+  "guestName": "Stranger",
+  "currentLocale": "Current locale",
+  "defaultLocale": "Default locale"
+}

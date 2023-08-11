@@ -1,0 +1,36 @@
+// https://getbootstrap.com/docs/5.0/layout/breakpoints/
+
+// Mobile first
+.container {
+  @import 'mq/_extra-small';
+
+  // X-Small devices (portrait phones, grater than 576px)
+  @media only screen and (min-width: 576px) {
+    @import 'mq/_576';
+  }
+
+  // Small devices (landscape phones, grater than 768px)
+  @media only screen and (min-width: 768px) {
+    @import 'mq/_768';
+  }
+
+  // Medium devices (tablets, grater than 992px)
+  @media only screen and (min-width: 992px) {
+    @import 'mq/_992';
+  }
+
+  // Large devices (desktops, grater than 1200px)
+  @media only screen and (min-width: 1200px) {
+    @import 'mq/_1200';
+  }
+
+  // X-Large devices (large desktops, grater than 1400px)
+  @media only screen and (min-width: 1400px) {
+    @import 'mq/_1400';
+  }
+
+  // XX-Large devices (x-large desktops, grater than 1900px)
+  @media only screen and (min-width: 1900px) {
+    @import 'mq/_1900';
+  }
+}

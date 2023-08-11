@@ -1,0 +1,85 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "impliedStrict": true,
+      "legacyDecorators": true,
+      "jsx": true
+    }
+  },
+  "env": {
+    "node": true,
+    "jest": true,
+    "es6": true
+  },
+  "extends": [
+    "airbnb-typescript/base",
+    "next",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "react"
+  ],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".cjs",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ],
+        "paths": [
+          "src"
+        ]
+      }
+    },
+    "import/extensions": [
+      ".js",
+      ".cjs",
+      ".jsx",
+      ".ts",
+      ".tsx"
+    ],
+    "import/parsers": {
+      "@typescript-eslint/parser": [
+        ".js",
+        ".cjs",
+        ".jsx",
+        ".ts",
+        ".tsx"
+      ]
+    }
+  },
+  "rules": {
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "indent": "off",
+    "@typescript-eslint/indent": ["error", 2],
+    "object-curly-spacing": ["error", "always", { "arraysInObjects": false, "objectsInObjects": false }],
+    "no-mixed-spaces-and-tabs": "error",
+    "computed-property-spacing": [
+      "error",
+      "always"
+    ],
+    "no-console": "error",
+    "default-case": "error",
+    "key-spacing": [
+      2,
+      {
+        "beforeColon": false,
+        "afterColon": true,
+        "align": "value"
+      }
+    ]
+  }
+}

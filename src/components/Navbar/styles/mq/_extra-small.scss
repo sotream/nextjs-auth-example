@@ -1,0 +1,85 @@
+& {
+  display: grid;
+  background-color: var(--brand);
+  box-shadow: 0 0 .2rem var(--brand-shade-30);
+  grid-template-columns: 75px 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 25px;
+
+  .mainMenu {
+    ul {
+      display: flex;
+      gap: 10px;
+      list-style: none;
+
+      li {
+        padding: .8rem 1.6rem;
+        background-color: var(--brand-shade-30);
+        border-radius: 5px;
+        transition: background-color 0.2s ease-in-out;
+
+        a {
+          color: var(--color-primary-text);
+          text-decoration: none;
+        }
+
+        &:hover {
+          background-color: var(--brand-shade-40);
+          transition: background-color 0.2s ease-in-out;
+        }
+      }
+    }
+  }
+
+  .logoWrapper {
+    display: flex;
+    justify-self: flex-start;
+
+    a {
+      display: flex;
+      flex-basis: 50px;
+      font-family: 'Caveat', cursive;
+      font-weight: 700;
+      font-size: 36px;
+      color: var(--color-primary-text);
+      transform: rotate(-15deg);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+  }
+
+  .switchersWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+
+    .themeSwitcher {
+      justify-self: flex-end;
+    }
+  }
+
+  .langSwitcher {
+    display: flex;
+    align-items: center;
+
+    button {
+      background: none;
+      border: none;
+      display: flex;
+      cursor: pointer;
+
+      &:not(:last-child) {
+        padding-right: 1rem;
+        border-right: 1px solid var(--brand-tint-60);
+        margin-right: 1rem;
+      }
+
+      svg {
+        width: 2.4rem;
+      }
+    }
+  }
+}

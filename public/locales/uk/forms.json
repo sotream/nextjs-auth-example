@@ -1,0 +1,19 @@
+{
+  "loginFormTitle": "Ласкаво просимо",
+  "signUpFormTitle": "Створіть обліковий запис",
+  "email": "Пошта",
+  "password": "Пароль",
+  "signUpBtnText": "Створити",
+  "loginBtnText": "Увійти",
+  "signUpLink": "Зареєструватись",
+  "loginLink": "Увійти",
+  "firstName": "Імʼя",
+  "lastName": "Прізвище",
+  "username": "Нікнейм",
+  "emailValidation": "Електропошта не валідна",
+  "emailValidationRequired": "Електропошта обовʼязкова",
+  "usernameValidationRequired": "Нікнейм обовʼязковий",
+  "lastNameValidationRequired": "Імʼя обовʼязкове",
+  "firstNameValidationRequired": "Прізвище обовʼязкове",
+  "passwordValidationRequired": "Пароль обовʼязковий"
+}

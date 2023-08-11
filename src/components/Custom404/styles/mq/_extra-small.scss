@@ -1,0 +1,44 @@
+& {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #000;
+
+  h1,
+  .descriptionText {
+    font-size: 48px;
+    color: #fff;
+  }
+
+  .descriptionText {
+    & > span {
+      font-weight: 600;
+      color: #f54251;
+    }
+  }
+
+  & a {
+    font-size: 1.5em;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    border-bottom: 1px solid #fff;
+    transition: color 200ms ease, border-bottom-color 200ms ease;
+
+    &:hover {
+      border-bottom: 1px solid #367dff;
+      color: #367dff;
+      transition: color 200ms ease, border-bottom-color 200ms ease;
+    }
+
+    & .active {
+      color: #83a3ff;
+    }
+  }
+
+  .linkWrapper {
+    margin-top: 10px;
+  }
+}

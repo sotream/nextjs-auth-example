@@ -1,0 +1,126 @@
+/*
+http://colormind.io/bootstrap/
+
+Light shades
+Use this color as the background for your dark-on-light designs, or the text color of an inverted design.
+
+Light accent
+Accent colors can be used to bring attention to design elements by contrasting with the rest of the palette.
+
+Main brand color
+This color should be eye-catching but not harsh. It can be liberally applied to your layout as its main identity.
+
+Dark accent
+Another accent color to consider. Not all colors have to be used - sometimes a simple color scheme works best.
+
+Dark shades
+Use as the text color for dark-on-light designs, or as the background for inverted designs.
+*/
+
+$brand: #B49963;
+
+$colors-light: (
+  light-shades: #F3EEEE,
+  light-accent: #787276,
+  light-accent-2: #C7C4C6,
+
+  brand: #B49963,
+
+  brand-shade-10: #9C8455,
+  brand-shade-20: #857047,
+  brand-shade-30: #6E5D3A,
+  brand-shade-40: #584A2E,
+  brand-shade-50: #443821,
+  brand-shade-60: #302716,
+  brand-shade-70: #1D170B,
+  brand-shade-80: #0C0803,
+  brand-shade-90: #020100,
+
+  brand-tint-10: #BBA373,
+  brand-tint-20: #C3AD82,
+  brand-tint-30: #CAB792,
+  brand-tint-40: #D2C1A1,
+  brand-tint-50: #D9CBB0,
+  brand-tint-60: #E1D6C0,
+  brand-tint-70: #E8E0D0,
+  brand-tint-80: #F0EADF,
+  brand-tint-90: #F7F5EF,
+
+  dark-accent: #7A4D46,
+  color-text-primary: #313641,
+);
+
+$colors-dark: (
+  color-text-primary: #F3EEEE,
+  dark-accent: #787276,
+
+  brand: #B49963,
+
+  brand-tint-10: #9C8455,
+  brand-tint-20: #857047,
+  brand-tint-30: #6E5D3A,
+  brand-tint-40: #584A2E,
+  brand-tint-50: #443821,
+  brand-tint-60: #302716,
+  brand-tint-70: #1D170B,
+  brand-tint-80: #0C0803,
+  brand-tint-90: #020100,
+
+  brand-shade-10: #BBA373,
+  brand-shade-20: #C3AD82,
+  brand-shade-30: #CAB792,
+  brand-shade-40: #D2C1A1,
+  brand-shade-50: #D9CBB0,
+  brand-shade-60: #E1D6C0,
+  brand-shade-70: #E8E0D0,
+  brand-shade-80: #F0EADF,
+  brand-shade-90: #F7F5EF,
+
+  light-accent: #7A4D46,
+  light-shades: #313641,
+  light-accent-2: #555A63,
+);
+
+@function hexToRGB($hex) {
+  @return red($hex), green($hex), blue($hex);
+}
+
+@mixin generate_colors($colors) {
+  // Colors
+  @each $color, $value in $colors {
+    @if str-slice(#{$value}, 1, 1) == "#" {
+      --#{$color}: #{$value};
+    } @else {
+      --#{$color}: var(--#{$value});
+    }
+  }
+
+  // RGB Colors
+  @each $color, $value in $colors {
+    @if str-slice(#{$value}, 1, 1) == "#" {
+      --#{$color}-rgb: #{hexToRGB($value)};
+    } @else {
+      --#{$color}-rgb: var(--RGB_#{$value});
+    }
+  }
+}
+
+:root {
+  @include generate_colors($colors-light);
+}
+
+[data-theme="light"] {
+  @include generate_colors($colors-light);
+}
+
+[data-theme="dark"] {
+  @include generate_colors($colors-dark);
+}
+
+
+[data-theme] {
+  color: var(--light-shades);
+  background-color: var(--light-shades);
+  font-weight: 400;
+  letter-spacing: 0.7px;
+}

@@ -1,0 +1,19 @@
+{
+  "loginFormTitle": "Welcome",
+  "signUpFormTitle": "Create account",
+  "email": "Email",
+  "password": "Password",
+  "loginBtnText": "Login",
+  "signUpBtnText": "Create",
+  "signUpLink": "Sign up",
+  "loginLink": "Sign in",
+  "firstName": "First name",
+  "lastName": "Last name",
+  "username": "Nickname",
+  "emailValidation": "Email not valid",
+  "emailValidationRequired": "Email is required",
+  "usernameValidationRequired": "Username is required",
+  "lastNameValidationRequired": "Last name is required",
+  "firstNameValidationRequired": "First Name is required",
+  "passwordValidationRequired": "Password is required"
+}

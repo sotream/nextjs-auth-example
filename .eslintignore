@@ -1,0 +1,10 @@
+next.config.js
+next.config.prod.js
+next-i18next.config.js
+scripts/generate-sitemap.js
+server.js
+postcss.config.js
+database/config
+database/migrations
+database/models
+database/seeders
