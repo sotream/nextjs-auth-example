@@ -7,9 +7,9 @@
         "url": "https://www.linkedin.com/in/andrii-prisniak/"
     },
     "scripts": {
-        "setup:db:prod": "NODE_ENV=production ./node_modules/.bin/sequelize db:migrate && NODE_ENV=production ./node_modules/.bin/sequelize db:seed:all",
+        "setup:db:prod": "NODE_ENV=production node -r dotenv/config ./node_modules/.bin/sequelize db:migrate && NODE_ENV=production node -r dotenv/config ./node_modules/.bin/sequelize db:seed:all",
         "prepare": "husky install",
-        "prebuild": "rimraf .next && rimraf ./database/db-prod.sqlite3 && npm run setup:db:prod",
+        "prebuild": "rimraf .next && npm run setup:db:prod",
         "dev": "next dev",
         "build": "next build",
         "start": "REACT_APP_VERSION=$npm_package_version next start",
@@ -73,6 +73,7 @@
         "@typescript-eslint/eslint-plugin": "6.1.0",
         "@typescript-eslint/parser": "6.1.0",
         "cssnano": "^6.0.1",
+        "dotenv": "^16.3.1",
         "eslint": "8.45.0",
         "eslint-config-airbnb-typescript": "17.1.0",
         "eslint-config-next": "13.4.12",

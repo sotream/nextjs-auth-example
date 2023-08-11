@@ -1,7 +1,28 @@
 module.exports = {
-  database: process.env.POSTGRES_DATABASE,
-  username: process.env.POSTGRES_USER,
-  password: process.env.POSTGRES_PASSWORD,
-  dialect: 'postgres',
-  host: process.env.POSTGRES_HOST
+  development: {
+    database: process.env.POSTGRES_DATABASE,
+    username: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    dialect: 'postgres',
+    host: process.env.POSTGRES_HOST,
+    ssl: true,
+    dialectOptions: {
+      ssl: {
+        require: true
+      }
+    }
+  },
+  production: {
+    database: process.env.POSTGRES_DATABASE,
+    username: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    dialect: 'postgres',
+    host: process.env.POSTGRES_HOST,
+    ssl: true,
+    dialectOptions: {
+      ssl: {
+        require: true
+      }
+    }
+  }
 };
