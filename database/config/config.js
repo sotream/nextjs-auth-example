@@ -4,6 +4,7 @@ module.exports = {
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     dialect: 'postgres',
+    dialectModule: require('pg'),
     host: process.env.POSTGRES_HOST,
     ssl: true,
     dialectOptions: {
@@ -17,6 +18,7 @@ module.exports = {
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     dialect: 'postgres',
+    dialectModule: require('pg'),
     host: process.env.POSTGRES_HOST,
     ssl: true,
     dialectOptions: {
