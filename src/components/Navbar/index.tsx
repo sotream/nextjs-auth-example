@@ -27,7 +27,7 @@ export const Navbar: FC<NavbarType> = ({ theme }) => {
   const { changeLocale } = useChangeLocale();
   const { t } = useTranslation();
   const { doLogout } = useLogout();
-  const isBreakPoint = useMediaQuery(768);
+  const isBreakPoint = useMediaQuery(767);
 
   const menuJSX = (
     <ul className={Styles.menuItems}>
