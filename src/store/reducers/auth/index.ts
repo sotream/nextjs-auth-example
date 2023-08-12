@@ -18,6 +18,6 @@ const authSlice = createSlice({
   }
 });
 
-export type IProfile = typeof initialState;
+export type IAuth = typeof initialState;
 export default authSlice.reducer;
 export const { setAccessToken, setRefreshToken } = authSlice.actions;

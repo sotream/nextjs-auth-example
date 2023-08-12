@@ -15,5 +15,7 @@
   "usernameValidationRequired": "Нікнейм обовʼязковий",
   "lastNameValidationRequired": "Імʼя обовʼязкове",
   "firstNameValidationRequired": "Прізвище обовʼязкове",
-  "passwordValidationRequired": "Пароль обовʼязковий"
+  "passwordValidationRequired": "Пароль обовʼязковий",
+  "signUpLinkTitle": "Вже зареєстровані?",
+  "loginLinkTitle": "Не маєте облікового запису?"
 }

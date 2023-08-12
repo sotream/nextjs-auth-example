@@ -4,18 +4,17 @@ import Head from 'next/head';
 import { GetServerSideProps, NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-// Views
+// Views, Components
 import { useTranslation } from 'next-i18next';
 import { BaseView } from '../../views/BaseView';
-
-// Components
 import { Login } from '../../components/Forms/Login';
+
+// Store
+import { reduxWrapper } from '../../store';
+import { setCurrentTheme } from '../../store/reducers/settings';
 
 // Other
 import { parseThemeFromCookie, getLocaleFromContext } from '../../helpers';
-import { createLogger } from '../../helpers/logger';
-
-const log = createLogger('home');
 
 const Home: NextPage<{ theme: string }> = ({ theme }) => {
   const { t } = useTranslation();
@@ -32,18 +31,20 @@ const Home: NextPage<{ theme: string }> = ({ theme }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const locale = getLocaleFromContext(context);
-  const theme = parseThemeFromCookie(context);
+export const getServerSideProps: GetServerSideProps = reduxWrapper.getServerSideProps(
+  (store) => async (context) => {
+    const locale = getLocaleFromContext(context);
+    const theme = parseThemeFromCookie(context);
 
-  log.info('TEST');
+    store.dispatch(setCurrentTheme(theme));
 
-  return {
-    props: {
-      theme,
-      ...await serverSideTranslations(locale, ['common', 'titles', 'nav-menu', 'forms']),
-    }
-  };
-};
+    return {
+      props: {
+        theme,
+        ...await serverSideTranslations(locale, ['errors', 'common', 'titles', 'nav-menu', 'forms']),
+      }
+    };
+  }
+);
 
 export default Home;

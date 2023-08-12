@@ -15,5 +15,7 @@
   "usernameValidationRequired": "Username is required",
   "lastNameValidationRequired": "Last name is required",
   "firstNameValidationRequired": "First Name is required",
-  "passwordValidationRequired": "Password is required"
+  "passwordValidationRequired": "Password is required",
+  "signUpLinkTitle": "Already have an account?",
+  "loginLinkTitle": "Don't have an account?"
 }

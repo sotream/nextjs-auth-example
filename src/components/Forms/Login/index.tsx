@@ -13,8 +13,8 @@ export const Login: FC = () => {
   const { t } = useTranslation();
   const {
     register,
-    handleSubmit,
-    onFormSubmit
+    onFormSubmit,
+    isLoading
   } = useLoginForm();
 
   return (
@@ -22,7 +22,7 @@ export const Login: FC = () => {
       <header className={Styles.formHeader}>
         <h1>{t('forms:loginFormTitle')}</h1>
       </header>
-      <form onSubmit={handleSubmit(onFormSubmit)} className={Styles.loginForm}>
+      <form onSubmit={onFormSubmit} className={Styles.loginForm}>
         <div className={Styles.formGroup}>
           <input
             className={Styles.formInput}
@@ -55,10 +55,11 @@ export const Login: FC = () => {
         <input
           className={Styles.submitBtn}
           type="submit"
+          disabled={isLoading}
           value={t('forms:loginBtnText')}
         />
         <p>
-          <span>Don&apos;t have an account?</span>{' '}
+          <span>{t('forms:loginLinkTitle')}</span>{' '}
           <Link href="/signup">
             {t('forms:signUpLink')}
           </Link>

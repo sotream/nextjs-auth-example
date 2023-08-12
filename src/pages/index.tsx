@@ -8,6 +8,7 @@ import { useTranslation } from 'next-i18next';
 
 // Views
 import { BaseView } from '../views/BaseView';
+import { Main } from '../components/Main';
 
 // Other
 import { parseThemeFromCookie, getLocaleFromContext } from '../helpers';
@@ -24,12 +25,22 @@ const Home: NextPage<{ theme: string }> = ({ theme }) => {
         <title>{`ST: ${t('titles:main')}`}</title>
       </Head>
       <BaseView theme = { theme }>
-        <Link
-          style={{ color: '#ccc' }}
-          href='/login'
-        >
-          { t('titles:login') }
-        </Link>
+        <div>
+          <Link
+            style={{ color: '#000' }}
+            href='/login'
+          >
+            { t('titles:login') }
+          </Link>
+          {' '}
+          <Link
+            style={{ color: '#000' }}
+            href='/signup'
+          >
+            { t('titles:signUp') }
+          </Link>
+        </div>
+        <Main />
       </BaseView>
     </>
   );

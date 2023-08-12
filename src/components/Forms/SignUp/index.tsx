@@ -109,7 +109,7 @@ export const SignUp: FC = () => {
           value={t('forms:signUpBtnText')}
         />
         <p>
-          <span>Already have an account?</span>{' '}
+          <span>{t('forms:signUpLinkTitle')}</span>{' '}
           <Link href='/login'>
             {t('forms:loginLink')}
           </Link>

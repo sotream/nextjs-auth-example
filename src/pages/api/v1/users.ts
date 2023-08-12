@@ -11,33 +11,12 @@ const usersHandler = async (req: Request, res: Response): Promise<void> => {
         // @ts-ignore
         const users = await db.User.findAll({ raw: true });
 
-        // TODO; add type for users
+        // TODO; add TypeScript type for users
         users.forEach((user: any) => {
           delete user.password;
         });
 
         res.status(200).json(users);
-      } catch(err) {
-        const error = err as Error;
-
-        res.status(400).json({
-          error: {
-            code:    1000,
-            message: error.message || 'Internal error'
-          }
-        });
-      }
-
-      break;
-    }
-    case 'POST': {
-      try {
-        // @ts-ignore
-        const user = await db.User.create(req.body);
-
-        delete user.password;
-
-        res.status(200).json(user);
       } catch(err) {
         const error = err as Error;
 
