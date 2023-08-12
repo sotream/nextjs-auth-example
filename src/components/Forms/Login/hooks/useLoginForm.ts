@@ -8,6 +8,7 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import { selectCurrentTheme } from '../../../../store/selectors/settings';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
 
 interface ILoginUser {
   email: string,
@@ -17,12 +18,14 @@ interface ILoginUser {
 export const useLoginForm = () => {
   const { t } = useTranslation();
   const currentTheme = useSelector(selectCurrentTheme);
+  const { replace } = useRouter();
 
   const validationSchema: Yup.ObjectSchema<ILoginUser> = Yup.object().shape({
     email: Yup.string().email(t('forms:emailValidation'))
       .required(t('forms:emailValidationRequired')),
     password: Yup.string()
       .required(t('forms:passwordValidationRequired'))
+      .min(8, t('forms:passwordValidationMinLength'))
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
 
@@ -38,14 +41,14 @@ export const useLoginForm = () => {
     mutationFn:  (loginData: ILoginUser) => {
       return axios.post<ILoginUser, any>('/api/v1/login', loginData);
     },
-    onSuccess: async ({ data }) => {
-      // eslint-disable-next-line no-console
-      console.log('user profile:', data);
+    onSuccess: async () => {
+      toast.success(t('forms:loginSuccess'), {
+        theme: currentTheme
+      });
+
+      replace('/transactions');
     },
     onError (error: AxiosError<{ error: { code: number, message: string } }>) {
-      // eslint-disable-next-line no-console
-      console.log('login error:', error?.response?.data?.error);
-
       toast.error(t(`errors:${error?.response?.data?.error?.code}`), {
         theme: currentTheme
       });

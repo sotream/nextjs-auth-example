@@ -29,7 +29,7 @@ export const Main: FC = () => {
         <p>{ t('common:defaultLocale') }: <span>{ defaultLocale }</span></p>
       </div>
       <div className={Styles.profileWrapper}>
-        <p>{ profile.name[ (locale || defaultLocale) as 'en' | 'uk' ] }</p>
+        <p>{ profile.firstName } { profile.lastName }</p>
       </div>
     </section>
   );

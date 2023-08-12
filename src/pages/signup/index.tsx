@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       theme,
-      ...await serverSideTranslations(locale, ['common', 'titles', 'nav-menu', 'forms']),
+      ...await serverSideTranslations(locale, ['errors', 'common', 'titles', 'nav-menu', 'forms']),
     }
   };
 };

@@ -13,9 +13,12 @@
   "emailValidation": "Електропошта не валідна",
   "emailValidationRequired": "Електропошта обовʼязкова",
   "usernameValidationRequired": "Нікнейм обовʼязковий",
-  "lastNameValidationRequired": "Імʼя обовʼязкове",
-  "firstNameValidationRequired": "Прізвище обовʼязкове",
+  "lastNameValidationRequired": "Прізвище обовʼязкове",
+  "firstNameValidationRequired": "Імʼя обовʼязкове",
   "passwordValidationRequired": "Пароль обовʼязковий",
+  "passwordValidationMinLength": "Пароль має бути мінімум 8 символів",
   "signUpLinkTitle": "Вже зареєстровані?",
-  "loginLinkTitle": "Не маєте облікового запису?"
+  "loginLinkTitle": "Не маєте облікового запису?",
+  "loginSuccess": "Успішний логін",
+  "signUpSuccess": "Зареєстровано"
 }

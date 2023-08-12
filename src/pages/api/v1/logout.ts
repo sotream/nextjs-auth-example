@@ -1,27 +1,19 @@
 // Core
 import { Request, Response } from 'express';
+import { setCookie } from 'cookies-next';
 
 // Other
 import { createLogger } from '../../../helpers/logger';
 
-// DB
-import db from '../../../../database/models';
+const log = createLogger('logout');
 
-const log = createLogger('signup');
-
-const usersHandler = async (req: Request, res: Response): Promise<void> => {
+const signUpHandler = async (req: Request, res: Response): Promise<void> => {
   switch (req.method) {
-    case 'GET': {
+    case 'POST': {
       try {
-        // @ts-ignore
-        const users = await db.User.findAll({ raw: true });
+        setCookie('access_token', '', { req, res, maxAge: 0, httpOnly: true });
 
-        // TODO; add TypeScript type for users
-        users.forEach((user: any) => {
-          delete user.password;
-        });
-
-        res.status(200).json(users);
+        res.status(200).json({ message: 'ok' });
       } catch(err) {
         log.error(err);
 
@@ -29,7 +21,7 @@ const usersHandler = async (req: Request, res: Response): Promise<void> => {
 
         res.status(400).json({
           error: {
-            code:    1000,
+            code:    4000,
             message: error.message || 'Internal error'
           }
         });
@@ -45,4 +37,4 @@ const usersHandler = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-export default usersHandler;
+export default signUpHandler;

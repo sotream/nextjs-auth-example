@@ -14,21 +14,24 @@
       list-style: none;
 
       li {
-        padding: .8rem 1.6rem;
-        background-color: var(--brand-shade-30);
-        border-radius: 5px;
-        transition: background-color 0.2s ease-in-out;
-
         a {
+          padding: .8rem 1.6rem;
+          background-color: var(--brand-shade-60);
+          border-radius: 5px;
+          transition: background-color 0.2s ease-in-out;
           color: var(--color-primary-text);
           text-decoration: none;
-        }
 
-        &:hover {
-          background-color: var(--brand-shade-40);
-          transition: background-color 0.2s ease-in-out;
+          &:hover {
+            background-color: var(--brand-shade-40);
+            transition: background-color 0.2s ease-in-out;
+          }
         }
       }
+    }
+
+    & .active {
+      background-color: var(--brand-shade-30);
     }
   }
 
@@ -80,6 +83,21 @@
       svg {
         width: 2.4rem;
       }
+    }
+  }
+
+  .logoutBtn {
+    padding: .4rem .8rem;
+    background-color: var(--brand-shade-60);
+    border-radius: 5px;
+    transition: background-color 0.2s ease-in-out;
+    color: var(--color-primary-text);
+    text-decoration: none;
+    border: none;
+
+    &:hover {
+      background-color: var(--brand-shade-40);
+      transition: background-color 0.2s ease-in-out;
     }
   }
 }

@@ -52,6 +52,11 @@ $colors-light: (
 
   dark-accent: #7A4D46,
   color-text-primary: #313641,
+
+  rt-color-white: #F3EEEE,
+  rt-color-dark: #7A4D46,
+
+  danger: #f44336,
 );
 
 $colors-dark: (
@@ -85,6 +90,11 @@ $colors-dark: (
   light-accent: #7A4D46,
   light-shades: #313641,
   light-accent-2: #555A63,
+
+  rt-color-white: #7A4D46,
+  rt-color-dark: #F3EEEE,
+
+  danger: #f44336,
 );
 
 @function hexToRGB($hex) {
@@ -117,10 +127,12 @@ $colors-dark: (
 
 [data-theme="light"] {
   @include generate_colors($colors-light);
+  --rt-opacity: .95;
 }
 
 [data-theme="dark"] {
   @include generate_colors($colors-dark);
+  --rt-opacity: .95;
 }
 
 
@@ -129,4 +141,9 @@ $colors-dark: (
   background-color: var(--light-shades);
   font-weight: 400;
   letter-spacing: 0.7px;
+}
+
+[role="tooltip"] {
+  z-index: 1;
+  opacity: 0;
 }

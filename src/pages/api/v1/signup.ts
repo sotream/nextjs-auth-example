@@ -2,8 +2,13 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 
+// Other
+import { createLogger } from '../../../helpers/logger';
+
 // DB
 import db from '../../../../database/models';
+
+const log = createLogger('signup');
 
 const signUpHandler = async (req: Request, res: Response): Promise<void> => {
   switch (req.method) {
@@ -20,6 +25,8 @@ const signUpHandler = async (req: Request, res: Response): Promise<void> => {
 
         res.status(200).json(user);
       } catch(err) {
+        log.error(err);
+
         const error = err as Error;
 
         res.status(400).json({

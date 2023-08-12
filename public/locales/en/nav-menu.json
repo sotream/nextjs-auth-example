@@ -1,6 +1,8 @@
 {
+  "home": "Home",
   "transactions": "Transactions",
   "accounts": "Accounts",
   "reports": "Reports",
-  "about": "About"
+  "about": "About",
+  "logoutBtn": "Logout"
 }

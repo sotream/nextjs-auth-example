@@ -16,6 +16,9 @@
   "lastNameValidationRequired": "Last name is required",
   "firstNameValidationRequired": "First Name is required",
   "passwordValidationRequired": "Password is required",
+  "passwordValidationMinLength": "Password should be 8 chars minimum",
   "signUpLinkTitle": "Already have an account?",
-  "loginLinkTitle": "Don't have an account?"
+  "loginLinkTitle": "Don't have an account?",
+  "loginSuccess": "Logged in",
+  "signUpSuccess": "Registered"
 }

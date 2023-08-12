@@ -7,10 +7,15 @@ import { NavLink } from '../../elements/NavLink';
 import { ThemeToggle } from '../ThemeToggle';
 import { useChangeLocale } from '../../helpers/changeLocale';
 
-// Styles
-import Styles from './styles/index.module.scss';
+// Components
 import { Ukraine } from '../../elements/Icons/Ukraine';
 import { UnitedKingdom } from '../../elements/Icons/UnitedKingdom';
+
+// Hooks
+import { useLogout } from './hooks/useLogout';
+
+// Styles
+import Styles from './styles/index.module.scss';
 
 type NavbarType = {
   theme: string;
@@ -19,6 +24,7 @@ type NavbarType = {
 export const Navbar: FC<NavbarType> = ({ theme }) => {
   const { changeLocale } = useChangeLocale();
   const { t } = useTranslation();
+  const { doLogout } = useLogout();
 
   return (
     <header className = { Styles.container }>
@@ -29,6 +35,9 @@ export const Navbar: FC<NavbarType> = ({ theme }) => {
       </div>
       <nav className={Styles.mainMenu}>
         <ul>
+          <li>
+            <NavLink href='/' activeClassName={Styles.active}>{t('nav-menu:home')}</NavLink>
+          </li>
           <li>
             <NavLink href='/transactions' activeClassName={Styles.active}>{t('nav-menu:transactions')}</NavLink>
           </li>
@@ -54,6 +63,9 @@ export const Navbar: FC<NavbarType> = ({ theme }) => {
         </div>
         <div className={Styles.themeSwitcher}>
           <ThemeToggle theme = { theme } />
+        </div>
+        <div>
+          <button className={Styles.logoutBtn} onClick={() => doLogout()}>{t('nav-menu:logoutBtn')}</button>
         </div>
       </div>
     </header>

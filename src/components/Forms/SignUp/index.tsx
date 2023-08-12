@@ -2,6 +2,8 @@
 import { FC } from 'react';
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
+import { Tooltip } from 'react-tooltip';
+import clsx from 'classnames';
 
 // Hooks
 import { useSignUpForm } from './hooks/useSignUpForm';
@@ -13,8 +15,9 @@ export const SignUp: FC = () => {
   const { t } = useTranslation();
   const {
     register,
-    handleSubmit,
-    onFormSubmit
+    onFormSubmit,
+    isLoading,
+    errors
   } = useSignUpForm();
 
   return (
@@ -22,11 +25,15 @@ export const SignUp: FC = () => {
       <header className={Styles.formHeader}>
         <h1>{t('forms:signUpFormTitle')}</h1>
       </header>
-      <form onSubmit={handleSubmit(onFormSubmit)} className={Styles.signUpForm}>
+      <form onSubmit={onFormSubmit} className={Styles.signUpForm}>
         <div className={Styles.twoColumns}>
           <div className={Styles.formGroup}>
+            { errors?.firstName?.message && <Tooltip id="signUp_firstName_tooltip" /> }
             <input
-              className={Styles.formInput}
+              data-tooltip-id="signUp_firstName_tooltip"
+              data-tooltip-content={errors?.firstName?.message}
+              data-tooltip-place="top-end"
+              className={clsx(Styles.formInput, { [ Styles.error ]: errors?.firstName })}
               id='signUp_firstName'
               placeholder={t('forms:firstName')}
               autoComplete='off'
@@ -40,8 +47,12 @@ export const SignUp: FC = () => {
             </label>
           </div>
           <div className={Styles.formGroup}>
+            { errors?.lastName?.message && <Tooltip id="signUp_lastName_tooltip" /> }
             <input
-              className={Styles.formInput}
+              data-tooltip-id="signUp_lastName_tooltip"
+              data-tooltip-content={errors?.lastName?.message}
+              data-tooltip-place="top-end"
+              className={clsx(Styles.formInput, { [ Styles.error ]: errors?.lastName })}
               id='signUp_lastName'
               autoComplete='off'
               placeholder={t('forms:lastName')}
@@ -57,8 +68,12 @@ export const SignUp: FC = () => {
         </div>
         <div className={Styles.twoColumns}>
           <div className={Styles.formGroup}>
+            { errors?.username?.message && <Tooltip id="signUp_username_tooltip" /> }
             <input
-              className={Styles.formInput}
+              data-tooltip-id="signUp_username_tooltip"
+              data-tooltip-content={errors?.username?.message}
+              data-tooltip-place="top-end"
+              className={clsx(Styles.formInput, { [ Styles.error ]: errors?.username })}
               id='signUp_username'
               placeholder={t('forms:username')}
               autoComplete='off'
@@ -72,8 +87,12 @@ export const SignUp: FC = () => {
             </label>
           </div>
           <div className={Styles.formGroup}>
+            { errors?.email?.message && <Tooltip id="signUp_email_tooltip" /> }
             <input
-              className={Styles.formInput}
+              data-tooltip-id="signUp_email_tooltip"
+              data-tooltip-content={errors?.email?.message}
+              data-tooltip-place="top-end"
+              className={clsx(Styles.formInput, { [ Styles.error ]: errors?.email })}
               id='signUp_email'
               placeholder= {t('forms:email')}
               autoComplete='off'
@@ -88,8 +107,12 @@ export const SignUp: FC = () => {
           </div>
         </div>
         <div className={Styles.formGroup}>
+          { errors?.password?.message && <Tooltip id="signUp_password_tooltip" /> }
           <input
-            className={Styles.formInput}
+            data-tooltip-id="signUp_password_tooltip"
+            data-tooltip-content={errors?.password?.message}
+            data-tooltip-place="top-end"
+            className={clsx(Styles.formInput, { [ Styles.error ]: errors?.password })}
             id='signUp_password'
             type='password'
             placeholder={t('forms:password')}
@@ -106,6 +129,7 @@ export const SignUp: FC = () => {
         <input
           className={Styles.submitBtn}
           type='submit'
+          disabled={isLoading}
           value={t('forms:signUpBtnText')}
         />
         <p>

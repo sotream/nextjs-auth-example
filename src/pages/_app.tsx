@@ -19,6 +19,7 @@ import { reduxWrapper } from '../store';
 
 // Styles
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-tooltip/dist/react-tooltip.css';
 import '../theme/styles.scss';
 
 // Other
@@ -36,7 +37,7 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 const MyApp = ({ Component, ...rest }: AppProps) => {
-  const [queryClient] = useState(new QueryClient({
+  const [queryClient] = useState(() => new QueryClient({
     defaultOptions: {
       queries: {
         refetchOnWindowFocus: false,
@@ -63,7 +64,7 @@ const MyApp = ({ Component, ...rest }: AppProps) => {
             pauseOnFocusLoss
             draggable
             pauseOnHover
-            theme={ pageProps.theme === 'DARK' ? 'dark' : 'light' }
+            theme={ pageProps.theme }
           />
           <Component { ...pageProps } />
           <ReactQueryDevtools initialIsOpen={false} />

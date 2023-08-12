@@ -1,6 +1,8 @@
 {
+  "home": "Головна",
   "transactions": "Транзакції",
   "accounts": "Рахунки",
   "reports": "Звіти",
-  "about": "Про нас"
+  "about": "Про нас",
+  "logoutBtn": "Вихід"
 }

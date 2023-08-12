@@ -2,6 +2,8 @@
 import { FC } from 'react';
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
+import clsx from 'classnames';
+import { Tooltip } from 'react-tooltip';
 
 // Hooks
 import { useLoginForm } from './hooks/useLoginForm';
@@ -14,7 +16,8 @@ export const Login: FC = () => {
   const {
     register,
     onFormSubmit,
-    isLoading
+    isLoading,
+    errors
   } = useLoginForm();
 
   return (
@@ -24,8 +27,12 @@ export const Login: FC = () => {
       </header>
       <form onSubmit={onFormSubmit} className={Styles.loginForm}>
         <div className={Styles.formGroup}>
+          { errors?.email?.message && <Tooltip id="login_email_tooltip" /> }
           <input
-            className={Styles.formInput}
+            data-tooltip-id="login_email_tooltip"
+            data-tooltip-content={errors?.email?.message}
+            data-tooltip-place="top-end"
+            className={clsx(Styles.formInput, { [ Styles.error ]: errors?.email })}
             id="login_email"
             autoComplete='off'
             placeholder={t('forms:email')}
@@ -38,8 +45,12 @@ export const Login: FC = () => {
           </label>
         </div>
         <div className={Styles.formGroup}>
+          { errors?.password?.message && <Tooltip id="login_password_tooltip" /> }
           <input
-            className={Styles.formInput}
+            data-tooltip-id="login_password_tooltip"
+            data-tooltip-content={errors?.password?.message || 'Unknown error'}
+            data-tooltip-place="top-end"
+            className={clsx(Styles.formInput, { [ Styles.error ]: errors?.password })}
             id="login_password"
             type="password"
             autoComplete='off'

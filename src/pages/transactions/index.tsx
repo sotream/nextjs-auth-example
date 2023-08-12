@@ -35,21 +35,6 @@ export const getServerSideProps = reduxWrapper.getServerSideProps(
     const locale = getLocaleFromContext(context);
     const theme = parseThemeFromCookie(context);
 
-    // const accessToken = '123456';
-    // const refreshToken = '7890123';
-    //
-    // setCookie('access_token', accessToken, { req: context.req, res: context.res, maxAge: 60 * 6 * 24, httpOnly: true });
-    // setCookie('refresh_token', refreshToken, { req: context.req, res: context.res, maxAge: 60 * 6 * 24, httpOnly: true });
-    //
-    // const cookies = getCookies(context);
-    //
-    // store.dispatch(setAccessToken(accessToken));
-    // store.dispatch(setRefreshToken(refreshToken));
-    //
-    // const { origin } = absoluteUrl(context.req);
-    // const requestUrl = `${origin}/api/v1/users`;
-    // const { data } = await axios.get(requestUrl);
-
     return withAuth(store, context, async function () {
       return {
         props: {

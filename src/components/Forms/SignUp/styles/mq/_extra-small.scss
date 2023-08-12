@@ -49,6 +49,15 @@
         margin: .8rem;
       }
     }
+
+    .error {
+      border-color: var(--danger);
+    }
+  }
+
+  .errorMessage {
+    color: var(--danger);
+    transform: translateY(6.5rem);
   }
 
   .formLabel {
@@ -61,19 +70,24 @@
 
   .formInput {
     padding: 1.2rem;
-    border: none;
     border-radius: 5px;
     margin-bottom: 1.5rem;
     font-size: 1.6rem;
     background-color: var(--brand-tint-70);
+    border: 2px solid var(--brand-tint-50);
     color: inherit;
+    outline: none;
 
     &::placeholder {
       color: var(--light-accent-2);
     }
+
+    &:focus:not(.error) {
+      border: 2px solid var(--brand-tint-20);
+    }
   }
 
-  .formInput:placeholder-shown {
+  .formInput:placeholder-shown:not(.error) {
     & + .formLabel {
       opacity: 0;
       visibility: hidden;
@@ -95,6 +109,12 @@
     &:hover {
       background-color: var(--brand-shade-10);
       transition: background-color 0.2s ease-in-out;
+    }
+
+    &:disabled {
+      background: var(--gray-50);
+      transition: background-color 0.2s ease-in-out;
+      cursor: not-allowed;
     }
   }
 }

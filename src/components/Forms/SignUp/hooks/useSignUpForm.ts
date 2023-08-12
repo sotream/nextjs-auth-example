@@ -1,8 +1,17 @@
+// Core
 import { useTranslation } from 'next-i18next';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { useMutation } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
+
+// Store
+import { selectCurrentTheme } from '../../../../store/selectors/settings';
 
 interface ICreateUser {
   firstName: string,
@@ -14,6 +23,8 @@ interface ICreateUser {
 
 export const useSignUpForm = () => {
   const { t } = useTranslation();
+  const currentTheme = useSelector(selectCurrentTheme);
+  const { replace } = useRouter();
 
   const validationSchema: Yup.ObjectSchema<ICreateUser> = Yup.object().shape({
     firstName: Yup.string()
@@ -26,6 +37,7 @@ export const useSignUpForm = () => {
       .required(t('forms:emailValidationRequired')),
     password: Yup.string()
       .required(t('forms:passwordValidationRequired'))
+      .min(8, t('forms:passwordValidationMinLength'))
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
 
@@ -36,16 +48,35 @@ export const useSignUpForm = () => {
     formState: { errors },
   } = useForm(formOptions);
 
-  const onFormSubmit = async (data: ICreateUser) => {
-    await axios.post('/api/v1/signup', data);
+  const mutation = useMutation({
+    mutationKey: ['profile'],
+    mutationFn:  (data: ICreateUser) => {
+      return axios.post<ICreateUser, any>('/api/v1/signup', data);
+    },
+    onSuccess: async () => {
+      toast.success(t('forms:signUpSuccess'), {
+        theme: currentTheme
+      });
+
+      replace('/transactions');
+    },
+    onError (error: AxiosError<{ error: { code: number, message: string } }>) {
+      toast.error(t(`errors:${error?.response?.data?.error?.code}`), {
+        theme: currentTheme
+      });
+    }
+  });
+
+  const onFormSubmit = handleSubmit(async (data: ICreateUser) => {
+    mutation.mutate(data);
 
     reset();
-  };
+  });
   
   return {
     register,
-    handleSubmit,
     onFormSubmit,
-    errors
+    errors,
+    isLoading: mutation.isLoading
   };
 };

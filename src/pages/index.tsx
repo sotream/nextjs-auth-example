@@ -12,9 +12,8 @@ import { Main } from '../components/Main';
 
 // Other
 import { parseThemeFromCookie, getLocaleFromContext } from '../helpers';
-import { createLogger } from '../helpers/logger';
-
-const log = createLogger('home');
+import { withAuth } from '../guards/withAuth';
+import { reduxWrapper } from '../store';
 
 const Home: NextPage<{ theme: string }> = ({ theme }) => {
   const { t } = useTranslation();
@@ -27,14 +26,14 @@ const Home: NextPage<{ theme: string }> = ({ theme }) => {
       <BaseView theme = { theme }>
         <div>
           <Link
-            style={{ color: '#000' }}
+            style={{ color: '#aaa' }}
             href='/login'
           >
             { t('titles:login') }
           </Link>
           {' '}
           <Link
-            style={{ color: '#000' }}
+            style={{ color: '#aaa' }}
             href='/signup'
           >
             { t('titles:signUp') }
@@ -46,18 +45,20 @@ const Home: NextPage<{ theme: string }> = ({ theme }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const locale = getLocaleFromContext(context);
-  const theme = parseThemeFromCookie(context);
+export const getServerSideProps: GetServerSideProps = reduxWrapper.getServerSideProps(
+  (store) => async (context) => {
+    const locale = getLocaleFromContext(context);
+    const theme = parseThemeFromCookie(context);
 
-  log.info('Main page');
-
-  return {
-    props: {
-      theme,
-      ...await serverSideTranslations(locale, ['common', 'titles', 'nav-menu', 'forms']),
-    }
-  };
-};
+    return withAuth(store, context, async function () {
+      return {
+        props: {
+          theme,
+          ...await serverSideTranslations(locale, ['common', 'titles', 'nav-menu', 'forms']),
+        }
+      };
+    });
+  }
+);
 
 export default Home;
