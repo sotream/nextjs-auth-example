@@ -25,6 +25,10 @@ const meHandler = async (req: Request, res: Response): Promise<void> => {
           throw new Error('jwt secret should be specified');
         }
 
+        if (!req.body.access_token) {
+          throw new Error('No valid tokens found');
+        }
+
         const tokenData = jwt.verify(req.body.access_token, process.env.JWT_TOKEN_SECRET) as ITokenPayload;
 
         // @ts-ignore

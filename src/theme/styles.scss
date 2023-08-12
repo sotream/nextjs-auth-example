@@ -1,5 +1,6 @@
 @import './palette.scss';
 @import './nprogress.css';
+@import './burger';
 
 * {
   box-sizing: border-box;
@@ -8,10 +9,44 @@
 }
 
 html {
-  font-size: 10px;
+  font-size: 7px;
 }
 
 body {
   font-family: 'Roboto Flex', sans-serif;
   font-size: 1.6rem;
+}
+
+// X-Small devices (portrait phones, grater than 576px)
+@media only screen and (min-width: 576px) {
+
+}
+
+// Small devices (landscape phones, grater than 768px)
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 8px;
+  }
+}
+
+// Medium devices (tablets, grater than 992px)
+@media only screen and (min-width: 992px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+// Large devices (desktops, grater than 1200px)
+@media only screen and (min-width: 1200px) {
+
+}
+
+// X-Large devices (large desktops, grater than 1400px)
+@media only screen and (min-width: 1400px) {
+
+}
+
+// XX-Large devices (x-large desktops, grater than 1900px)
+@media only screen and (min-width: 1900px) {
+
 }

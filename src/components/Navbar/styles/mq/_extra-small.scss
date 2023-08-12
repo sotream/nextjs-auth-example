@@ -2,15 +2,15 @@
   display: grid;
   background-color: var(--brand);
   box-shadow: 0 0 .2rem var(--brand-shade-30);
-  grid-template-columns: 75px 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   justify-content: center;
-  padding: 10px 25px;
+  padding: 0.5rem 1.5rem;
 
   .mainMenu {
-    ul {
+    .menuItems {
       display: flex;
-      gap: 10px;
+      gap: 1rem;
       list-style: none;
 
       li {
@@ -19,7 +19,7 @@
           background-color: var(--brand-shade-60);
           border-radius: 5px;
           transition: background-color 0.2s ease-in-out;
-          color: var(--color-primary-text);
+          color: var(--brand-tint-60);
           text-decoration: none;
 
           &:hover {
@@ -28,10 +28,37 @@
           }
         }
       }
-    }
 
-    & .active {
-      background-color: var(--brand-shade-30);
+      & .active {
+        background-color: var(--brand-shade-30);
+      }
+    }
+  }
+
+  .burgerWrapper {
+    .menuItems {
+      li {
+        display: flex;
+        margin-bottom: 1rem;
+
+        a {
+          width: 100%;
+          padding: .8rem 1.6rem;
+          background-color: var(--brand-shade-60);
+          transition: background-color 0.2s ease-in-out;
+          color: var(--brand-tint-60);
+          text-decoration: none;
+
+          &:hover {
+            background-color: var(--brand-shade-40);
+            transition: background-color 0.2s ease-in-out;
+          }
+        }
+      }
+
+      & .active {
+        background-color: var(--brand-shade-30);
+      }
     }
   }
 
@@ -99,5 +126,11 @@
       background-color: var(--brand-shade-40);
       transition: background-color 0.2s ease-in-out;
     }
+  }
+
+  .burgerWrapper {
+    position: relative;
+    width: 3.6rem;
+    height: 3.6rem;
   }
 }

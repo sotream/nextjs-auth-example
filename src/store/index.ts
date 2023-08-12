@@ -28,4 +28,6 @@ export const makeStore = wrapMakeStore(() => {
   });
 });
 
+export type IStore = ReturnType<typeof makeStore>
+
 export const reduxWrapper = createWrapper(makeStore, { debug: false });

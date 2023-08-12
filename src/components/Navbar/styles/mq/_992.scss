@@ -1,2 +1,33 @@
 & {
+  grid-template-columns: 75px 1fr 1fr;
+
+  .mainMenu {
+    display: block;
+
+    ul {
+      display: flex;
+      gap: 10px;
+      list-style: none;
+
+      li {
+        a {
+          padding: .8rem 1.6rem;
+          background-color: var(--brand-shade-60);
+          border-radius: 5px;
+          transition: background-color 0.2s ease-in-out;
+          color: var(--color-primary-text);
+          text-decoration: none;
+
+          &:hover {
+            background-color: var(--brand-shade-40);
+            transition: background-color 0.2s ease-in-out;
+          }
+        }
+      }
+    }
+
+    & .active {
+      background-color: var(--brand-shade-30);
+    }
+  }
 }
