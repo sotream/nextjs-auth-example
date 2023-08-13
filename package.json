@@ -10,7 +10,7 @@
     "setup:db:dev": "node -r dotenv/config ./node_modules/.bin/sequelize db:migrate && node -r dotenv/config ./node_modules/.bin/sequelize db:seed:all",
     "postinstall": "husky install",
     "prebuild": "rimraf .next",
-    "dev": "REACT_APP_VERSION=$npm_package_version next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "start:prod": "npm run build && npm run start",
