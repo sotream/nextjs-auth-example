@@ -18,6 +18,8 @@ import { useMediaQuery } from '../../common/hooks/useMediaQuery';
 
 // Styles
 import Styles from './styles/index.module.scss';
+import { useSelector } from 'react-redux';
+import { selectIsMobile } from '../../store/selectors/settings';
 
 type NavbarType = {
   theme: string;
@@ -28,6 +30,7 @@ export const Navbar: FC<NavbarType> = ({ theme }) => {
   const { t } = useTranslation();
   const { doLogout } = useLogout();
   const isBreakPoint = useMediaQuery(767);
+  const isMobile = useSelector(selectIsMobile);
 
   const menuJSX = (
     <ul className={Styles.menuItems}>
@@ -51,7 +54,7 @@ export const Navbar: FC<NavbarType> = ({ theme }) => {
 
   return (
     <header className = { Styles.container }>
-      { isBreakPoint ? (
+      { isMobile || isBreakPoint ? (
         <div className={Styles.burgerWrapper}>
           <Menu>
             {menuJSX}
