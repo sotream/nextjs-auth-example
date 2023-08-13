@@ -12,7 +12,7 @@
     "prebuild": "rimraf .next",
     "dev": "REACT_APP_VERSION=$npm_package_version next dev",
     "build": "next build",
-    "start": "REACT_APP_VERSION=$npm_package_version next start",
+    "start": "next start",
     "start:prod": "npm run build && npm run start",
     "format": "eslint './src/**/*.{js,ts,tsx}' -c .eslintrc --quiet --fix",
     "lint:type-check": "tsc --noEmit -p tsconfig.build.json",
