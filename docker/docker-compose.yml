@@ -1,0 +1,50 @@
+version: '3.9'
+
+services:
+  redis-nextjsauth:
+    image: docker.io/bitnami/redis:7.0
+    container_name: redis-nextjsauth
+    environment:
+#       ALLOW_EMPTY_PASSWORD is recommended only for development.
+#      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+      - REDIS_PASSWORD=vpeWtStwFB3HKVXh
+    ports:
+      - '6377:6379'
+    volumes:
+      - ./data/redis_data:/bitnami/redis/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - nextjsauth
+
+  postgres-nextjsauth:
+    image: postgres:15.3
+    container_name: postgres_15_3-nextjsauth
+    environment:
+      TZ: "utc"
+      PGTZ: "utc"
+      POSTGRES_DB: "nextjsauth"
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "RSu6a3ncKRRSF6Yv"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./data/postgres_15_3:/var/lib/postgresql/data:delegated
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U admin -d education" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - nextjsauth
+
+networks:
+  nextjsauth:
+    driver: bridge

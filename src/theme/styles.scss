@@ -9,7 +9,7 @@
 }
 
 html {
-  font-size: 7px;
+  font-size: 50%; // 8px
 }
 
 body {
@@ -25,14 +25,14 @@ body {
 // Small devices (landscape phones, grater than 768px)
 @media only screen and (min-width: 768px) {
   html {
-    font-size: 8px;
+    font-size: 56.25%; // 9px
   }
 }
 
 // Medium devices (tablets, grater than 992px)
 @media only screen and (min-width: 992px) {
   html {
-    font-size: 10px;
+    font-size: 62.5%; // 10px
   }
 }
 

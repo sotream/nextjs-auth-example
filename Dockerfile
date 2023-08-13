@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app
 #RUN npm i
-RUN yarn --production
+RUN npm run --production
 COPY ./.next /usr/src/app/.next
 COPY ./public /usr/src/app/public
 COPY ./next-i18next.config.js /usr/src/app/next-i18next.config.js

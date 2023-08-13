@@ -32,6 +32,7 @@ export const useMediaQuery = (width: number) => {
       // compatibility for browser that don't have removeEventListener
       return () => media.removeListener(updateTarget);
     }
+    // eslint-disable-next-line
   }, []);
 
   return targetReached;

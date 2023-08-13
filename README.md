@@ -33,17 +33,44 @@
 
 1. [Next.js](https://nextjs.org/)
 2. [React query](https://tanstack.com/query)
-3. [ElephantSQL](https://www.elephantsql.com/)
+3. [ElephantSQL (for production)](https://www.elephantsql.com/)
+4. [Docker](https://www.docker.com/)
+5. [Docker Compose](https://docs.docker.com/compose/)
 
-## Installation
+## 1. Install dependencies
 
 ```bash
-$ npm install
+npm install
 ```
 
-## Running the app
+## 2. Setup local environment
+
+```bash
+docker-compose -f ./docker/docker-compose.yml up -d
+```
+
+This command will run local PostgreSQL and local Redis instances.
+
+## 3. Create local `.env` file
+
+```yaml
+POSTGRES_DATABASE="nextjsauth"
+POSTGRES_HOST="127.0.0.1"
+POSTGRES_PORT="5433"
+POSTGRES_PASSWORD="RSu6a3ncKRRSF6Yv"
+POSTGRES_USER="admin"
+JWT_TOKEN_SECRET="pa$$w0rD"
+```
+
+## 4. Initialize local DB
+
+```bash
+npm run setup:db:dev
+```
+
+## 5. Running the app in dev mode
 
 ```bash
 # development
-$ npm run dev
+npm run dev
 ```
