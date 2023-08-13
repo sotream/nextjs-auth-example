@@ -32,11 +32,11 @@ const Reports: NextPage<{ theme: string }> = ({ theme }) => {
 };
 
 export const getServerSideProps = reduxWrapper.getServerSideProps(
-  (store) => (context) => {
+  (store) => async (context) => {
     const locale = getLocaleFromContext(context);
     const theme = parseThemeFromCookie(context);
 
-    initialDispatcher(store, context);
+    await initialDispatcher(store, context);
 
     return withAuth(store, context, async function () {
       return {

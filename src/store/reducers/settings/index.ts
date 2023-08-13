@@ -3,7 +3,8 @@ import { Theme } from 'react-toastify';
 
 const initialState = {
   currentTheme: 'light' as Theme,
-  isMobile:     true
+  isMobile:     true,
+  appVersion:   '0.0.0'
 };
 
 const settingsSlice = createSlice({
@@ -15,10 +16,13 @@ const settingsSlice = createSlice({
     },
     setIsMobile(state, action) {
       state.isMobile = action.payload;
+    },
+    setAppVersion(state, action) {
+      state.appVersion = action.payload;
     }
   }
 });
 
 export type ISettings = typeof initialState;
 export default settingsSlice.reducer;
-export const { setCurrentTheme, setIsMobile } = settingsSlice.actions;
+export const { setCurrentTheme, setIsMobile, setAppVersion } = settingsSlice.actions;

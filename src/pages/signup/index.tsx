@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = reduxWrapper.getServerSide
 
     log.info('SignUp getServerSideProps');
 
-    initialDispatcher(store, context);
+    await initialDispatcher(store, context);
 
     return {
       props: {

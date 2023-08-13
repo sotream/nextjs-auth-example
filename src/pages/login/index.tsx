@@ -36,7 +36,7 @@ export const getServerSideProps: GetServerSideProps = reduxWrapper.getServerSide
     const locale = getLocaleFromContext(context);
     const theme = parseThemeFromCookie(context);
 
-    initialDispatcher(store, context);
+    await initialDispatcher(store, context);
 
     return {
       props: {

@@ -6,6 +6,8 @@ import { createLogger } from '../../../helpers/logger';
 
 // DB
 import db from '../../../../database/models';
+import { ApiError } from '../../../common/errors';
+import { IUser } from '../../../types';
 
 const log = createLogger('signup');
 
@@ -14,10 +16,9 @@ const usersHandler = async (req: Request, res: Response): Promise<void> => {
     case 'GET': {
       try {
         // @ts-ignore
-        const users = await db.User.findAll({ raw: true });
+        const users: IUser[] = await db.User.findAll({ raw: true });
 
-        // TODO; add TypeScript type for users
-        users.forEach((user: any) => {
+        users.forEach((user) => {
           delete user.password;
         });
 
@@ -25,11 +26,11 @@ const usersHandler = async (req: Request, res: Response): Promise<void> => {
       } catch(err) {
         log.error(err);
 
-        const error = err as Error;
+        const error = err as ApiError;
 
-        res.status(400).json({
+        res.status(error.statusCode || 400).json({
           error: {
-            code:    1000,
+            code:    error.code || 1000,
             message: error.message || 'Internal error'
           }
         });

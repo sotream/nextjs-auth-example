@@ -65,7 +65,7 @@
     "semi": ["error", "always"],
     "indent": "off",
     "@typescript-eslint/indent": ["error", 2],
-    "object-curly-spacing": ["error", "always", { "arraysInObjects": false, "objectsInObjects": false }],
+    "object-curly-spacing": ["error", "always", { "arraysInObjects": false, "objectsInObjects": true }],
     "no-mixed-spaces-and-tabs": "error",
     "computed-property-spacing": [
       "error",
@@ -80,6 +80,11 @@
         "afterColon": true,
         "align": "value"
       }
+    ],
+    "@typescript-eslint/lines-between-class-members": [
+      "error",
+      "always",
+      { "exceptAfterSingleLine": true }
     ]
   }
 }

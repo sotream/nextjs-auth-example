@@ -71,6 +71,5 @@ npm run setup:db:dev
 ## 5. Running the app in dev mode
 
 ```bash
-# development
 npm run dev
 ```

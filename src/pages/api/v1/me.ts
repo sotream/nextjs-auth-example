@@ -7,26 +7,21 @@ import { createLogger } from '../../../helpers/logger';
 
 // DB
 import db from '../../../../database/models';
+import { ApiError } from '../../../common/errors';
+import { ITokenPayload } from '../../../types';
 
 const log = createLogger('me');
-
-interface ITokenPayload {
-  firstName: string,
-  lastName: string,
-  username: string,
-  email: string,
-}
 
 const meHandler = async (req: Request, res: Response): Promise<void> => {
   switch (req.method) {
     case 'POST': {
       try {
         if (!process.env.JWT_TOKEN_SECRET) {
-          throw new Error('jwt secret should be specified');
+          throw new ApiError('jwt secret should be specified', 3001, 500);
         }
 
         if (!req.body.access_token) {
-          throw new Error('No valid tokens found');
+          throw new ApiError('No valid tokens found', 3002, 401);
         }
 
         const tokenData = jwt.verify(req.body.access_token, process.env.JWT_TOKEN_SECRET) as ITokenPayload;
@@ -40,10 +35,10 @@ const meHandler = async (req: Request, res: Response): Promise<void> => {
         });
 
         if (!user) {
-          throw new Error('Wrong credentials');
+          throw new ApiError('Wrong credentials', 3003, 401);
         }
 
-        res.status(200).json({
+        res.status(200).json({ // TODO; move to utility user format function
           firstName: tokenData.firstName,
           lastName:  tokenData.lastName,
           username:  tokenData.username,
@@ -52,11 +47,11 @@ const meHandler = async (req: Request, res: Response): Promise<void> => {
       } catch(err) {
         log.error(err);
 
-        const error = err as Error;
+        const error = err as ApiError;
 
-        res.status(400).json({
+        res.status(error.statusCode || 400).json({
           error: {
-            code:    3000,
+            code:    error.code || 3000,
             message: error.message || 'Internal error'
           }
         });

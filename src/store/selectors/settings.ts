@@ -13,3 +13,8 @@ export const selectIsMobile = createSelector(
   selectSettings,
   (settings) => settings.isMobile
 );
+
+export const selectAppVersion = createSelector(
+  selectSettings,
+  (settings) => settings.appVersion
+);

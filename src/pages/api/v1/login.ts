@@ -9,6 +9,7 @@ import { createLogger } from '../../../helpers/logger';
 
 // DB
 import db from '../../../../database/models';
+import { ApiError } from '../../../common/errors';
 
 const log = createLogger('login');
 
@@ -17,7 +18,7 @@ const signUpHandler = async (req: Request, res: Response): Promise<void> => {
     case 'POST': {
       try {
         if (!process.env.JWT_TOKEN_SECRET) {
-          throw new Error('jwt secret should be specified');
+          throw new ApiError('jwt secret should be specified', 2001, 500);
         }
 
         // @ts-ignore
@@ -29,13 +30,13 @@ const signUpHandler = async (req: Request, res: Response): Promise<void> => {
         });
 
         if (!user) {
-          throw new Error('Wrong credentials');
+          throw new ApiError('Wrong credentials', 2002, 401);
         }
 
         const compareResult = await bcrypt.compare(req.body.password, user.password);
 
         if (!compareResult) {
-          throw new Error('Wrong credentials');
+          throw new ApiError('Wrong credentials', 2002, 401);
         }
 
         const tokenPayload = {
@@ -47,17 +48,17 @@ const signUpHandler = async (req: Request, res: Response): Promise<void> => {
 
         const accessToken = jwt.sign(tokenPayload, process.env.JWT_TOKEN_SECRET);
 
-        setCookie('access_token', accessToken, { req, res, maxAge: 60 * 6 * 24, httpOnly: true });
+        setCookie('access_token', accessToken, { req, res, maxAge: 60 * 60 * 8, httpOnly: true });
 
         res.status(200).json(tokenPayload);
       } catch(err) {
         log.error(err);
 
-        const error = err as Error;
+        const error = err as ApiError;
 
-        res.status(401).json({
+        res.status(error.statusCode || 400).json({
           error: {
-            code:    2000,
+            code:    error.code || 2000,
             message: error.message || 'Internal error'
           }
         });
