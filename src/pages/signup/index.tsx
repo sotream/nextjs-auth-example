@@ -14,6 +14,8 @@ import { SignUp } from '../../components/Forms/SignUp';
 // Other
 import { parseThemeFromCookie, getLocaleFromContext } from '../../helpers';
 import { createLogger } from '../../helpers/logger';
+import { initialDispatcher } from '../../helpers/initialDispatcher';
+import { reduxWrapper } from '../../store';
 
 const log = createLogger('home');
 
@@ -32,18 +34,22 @@ const Home: NextPage<{ theme: string }> = ({ theme }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const locale = getLocaleFromContext(context);
-  const theme = parseThemeFromCookie(context);
+export const getServerSideProps: GetServerSideProps = reduxWrapper.getServerSideProps(
+  (store) => async (context) => {
+    const locale = getLocaleFromContext(context);
+    const theme = parseThemeFromCookie(context);
 
-  log.info('SignUp getServerSideProps');
+    log.info('SignUp getServerSideProps');
 
-  return {
-    props: {
-      theme,
-      ...await serverSideTranslations(locale, ['errors', 'common', 'titles', 'nav-menu', 'forms']),
-    }
-  };
-};
+    initialDispatcher(store, context);
+
+    return {
+      props: {
+        theme,
+        ...await serverSideTranslations(locale, ['errors', 'common', 'titles', 'nav-menu', 'forms']),
+      }
+    };
+  }
+);
 
 export default Home;

@@ -14,6 +14,7 @@ import { reduxWrapper } from '../../store';
 // Other
 import { parseThemeFromCookie, getLocaleFromContext } from '../../helpers';
 import { withAuth } from '../../guards/withAuth';
+import { initialDispatcher } from '../../helpers/initialDispatcher';
 
 const About: NextPage<{ theme: string }> = ({ theme }) => {
   const { t } = useTranslation();
@@ -34,6 +35,8 @@ export const getServerSideProps = reduxWrapper.getServerSideProps(
   (store) => (context) => {
     const locale = getLocaleFromContext(context);
     const theme = parseThemeFromCookie(context);
+
+    initialDispatcher(store, context);
 
     return withAuth(store, context, async function () {
       return {

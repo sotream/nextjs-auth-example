@@ -3,7 +3,7 @@ import { Theme } from 'react-toastify';
 
 const initialState = {
   currentTheme: 'light' as Theme,
-  isMobile:     false
+  isMobile:     true
 };
 
 const settingsSlice = createSlice({

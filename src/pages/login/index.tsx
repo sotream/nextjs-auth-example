@@ -11,10 +11,10 @@ import { Login } from '../../components/Forms/Login';
 
 // Store
 import { reduxWrapper } from '../../store';
-import { setCurrentTheme } from '../../store/reducers/settings';
 
 // Other
 import { parseThemeFromCookie, getLocaleFromContext } from '../../helpers';
+import { initialDispatcher } from '../../helpers/initialDispatcher';
 
 const Home: NextPage<{ theme: string }> = ({ theme }) => {
   const { t } = useTranslation();
@@ -36,7 +36,7 @@ export const getServerSideProps: GetServerSideProps = reduxWrapper.getServerSide
     const locale = getLocaleFromContext(context);
     const theme = parseThemeFromCookie(context);
 
-    store.dispatch(setCurrentTheme(theme));
+    initialDispatcher(store, context);
 
     return {
       props: {
