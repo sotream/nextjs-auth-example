@@ -4,7 +4,7 @@ import {
 } from 'sequelize';
 
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class Transaction extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -15,45 +15,42 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
 
-  User.init({
+  Transaction.init({
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    firstName: {
-      type: DataTypes.STRING,
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Users',
+        key: 'id'
+      },
+      onDelete: 'CASCADE'
+    },
+    txType: {
+      type: DataTypes.ENUM(
+        'deposit',
+        'withdraw',
+        'transfer'
+      ),
       allowNull: false
     },
-    lastName: {
-      type: DataTypes.STRING,
+    details: {
+      type: DataTypes.JSONB
+    },
+    amount: {
+      type: DataTypes.INTEGER,
       allowNull: false
-    },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    enabled: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: true
     }
   }, {
     sequelize,
-    modelName: 'User',
-    tableName: 'Users'
+    modelName: 'Transaction',
+    tableName: 'Transactions'
   });
 
-  return User;
+  return Transaction;
 };

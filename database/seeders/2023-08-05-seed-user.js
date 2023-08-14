@@ -15,11 +15,11 @@ module.exports = {
      * }], {});
     */
 
-    return queryInterface.bulkInsert('users', [{
+    return queryInterface.bulkInsert('Users', [{
       firstName: 'John',
       lastName: 'Dou',
       username: 'JDou',
-      password: await bcrypt.hash('123456', 10),
+      password: await bcrypt.hash('12345678', 10),
       email: 'jdou@example.com',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
@@ -33,6 +33,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    return queryInterface.bulkDelete('users', null, {});
+    return queryInterface.bulkDelete('Users', null, {});
   }
 };

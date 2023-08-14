@@ -3,8 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
-const modelPath = process.cwd() + '/database/models/'; //add this line
-const basename = path.basename(__dirname + '/../database/models/index.js'); //change this line
+const modelPath = process.cwd() + '/database/models/';
+const basename = path.basename(__dirname + '/../database/models/index.js');
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.js')[env];
 
@@ -18,12 +18,12 @@ if (config.use_env_variable) {
 }
 
 fs
-  .readdirSync(modelPath) //change this line
+  .readdirSync(modelPath)
   .filter(file => {
     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
   .forEach(file => {
-    const model = require(__dirname + '/../models/' + file)(sequelize, Sequelize.DataTypes); //change this line
+    const model = require(__dirname + '/../models/' + file)(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
   });
 
