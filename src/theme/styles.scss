@@ -1,6 +1,7 @@
-@import './palette.scss';
-@import './nprogress.css';
+@import './palette';
+@import './nprogress';
 @import './burger';
+@import './mixins';
 
 * {
   box-sizing: border-box;
@@ -19,6 +20,18 @@ html {
 body {
   font-family: 'Roboto Flex', sans-serif;
   font-size: 1.6rem;
+}
+
+[data-theme] {
+  color: var(--light-shades);
+  background-color: var(--light-shades);
+  font-weight: 400;
+  letter-spacing: 0.7px;
+}
+
+[role="tooltip"] {
+  z-index: 1;
+  opacity: 0;
 }
 
 // X-Small devices (portrait phones, grater than 576px)

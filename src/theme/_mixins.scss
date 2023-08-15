@@ -1,0 +1,47 @@
+// https://getbootstrap.com/docs/5.0/layout/breakpoints/
+/*
+1em = 16px
+*/
+@mixin respond($breakpoint) {
+  // X-Small devices (portrait phones, grater than 576px)
+  @if $breakpoint == xsmall {
+    @media only screen and (min-width: 36em) {
+      @content
+    }
+  }
+
+  // Small devices (landscape phones, grater than 768px)
+  @if $breakpoint == small {
+    @media only screen and (min-width: 48em) {
+      @content
+    }
+  }
+
+  // Medium devices (tablets, grater than 992px)
+  @if $breakpoint == medium {
+    @media only screen and (min-width: 62em) {
+      @content
+    }
+  }
+
+  // Large devices (desktops, grater than 1200px)
+  @if $breakpoint == large {
+    @media only screen and (min-width: 75em) {
+      @content
+    }
+  }
+
+  // X-Large devices (large desktops, grater than 1400px)
+  @if $breakpoint == xlarge {
+    @media only screen and (min-width: 87.5em) {
+      @content
+    }
+  }
+
+  // XX-Large devices (x-large desktops, grater than 1900px)
+  @if $breakpoint == xxlarge {
+    @media only screen and (min-width: 118.75em) {
+      @content
+    }
+  }
+}

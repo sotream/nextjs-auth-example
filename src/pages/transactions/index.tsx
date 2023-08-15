@@ -1,5 +1,6 @@
 // noinspection DuplicatedCode
 // Core
+import { useState } from 'react';
 import Head from 'next/head';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -7,6 +8,7 @@ import { useTranslation } from 'next-i18next';
 
 // Views
 import { BaseView } from '../../views/BaseView';
+import { Modal } from '../../components/Modal';
 
 // Store
 import { reduxWrapper } from '../../store';
@@ -15,9 +17,11 @@ import { reduxWrapper } from '../../store';
 import { parseThemeFromCookie, getLocaleFromContext } from '../../helpers';
 import { withAuth } from '../../guards/withAuth';
 import { initialDispatcher } from '../../helpers/initialDispatcher';
+import { Login } from '../../components/Forms/Login';
 
 const Transactions: NextPage<{ theme: string }> = ({ theme }) => {
   const { t } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
@@ -26,6 +30,10 @@ const Transactions: NextPage<{ theme: string }> = ({ theme }) => {
       </Head>
       <BaseView theme = { theme }>
         <h1>Transactions page</h1>
+        <button onClick={() => setIsOpen(true)}>Open modal</button>
+        <Modal isOpened={isOpen} onClose={() => setIsOpen(false)}>
+          <Login/>
+        </Modal>
       </BaseView>
     </>
   );

@@ -2,35 +2,35 @@
 
 // Mobile first
 .container {
-  @import './mq/extra-small';
+  @import 'mq/_extra-small';
 
   // X-Small devices (portrait phones, grater than 576px)
-  @media only screen and (min-width: 576px) {
-    @import './mq/576';
+  @media only screen and (min-width: 36em) {
+    @import 'mq/_576';
   }
 
   // Small devices (landscape phones, grater than 768px)
-  @media only screen and (min-width: 768px) {
-    @import './mq/768';
+  @media only screen and (min-width: 48em) {
+    @import 'mq/_768';
   }
 
   // Medium devices (tablets, grater than 992px)
-  @media only screen and (min-width: 992px) {
-    @import './mq/992';
+  @media only screen and (min-width: 62em) {
+    @import 'mq/_992';
   }
 
   // Large devices (desktops, grater than 1200px)
-  @media only screen and (min-width: 1200px) {
-    @import './mq/1200';
+  @media only screen and (min-width: 75em) {
+    @import 'mq/_1200';
   }
 
   // X-Large devices (large desktops, grater than 1400px)
-  @media only screen and (min-width: 1400px) {
-    @import './mq/1400';
+  @media only screen and (min-width: 87.5em) {
+    @import 'mq/_1400';
   }
 
   // XX-Large devices (x-large desktops, grater than 1900px)
-  @media only screen and (min-width: 1900px) {
-    @import './mq/1900';
+  @media only screen and (min-width: 118.75em) {
+    @import 'mq/_1900';
   }
 }
